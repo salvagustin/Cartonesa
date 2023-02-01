@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="utf-8">
+<link rel="stylesheet" href="tabla.ccs">
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+
+	<div class="py-4 ml-5 mr-5">
+
+		<div class="card bg-light">
+
+			<div class="card-body">
+			
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+     <h2>AREAS</h2>
+    </div>
+    
+    
+    <div >
+    <h6 id="HoraActual"> </h6>
+    
+    </div>
+
+  </div>
+</div>						
+				<table class="table">
+					<thead>
+						<tr>
+							<th>
+								<h5>Buscar registro por:</h5>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><div class="col-xs-3 ">
+									 <input type="radio" id="areanombre" name="findBy"
+										value="Areanombre" checked="checked">   <label for="areanombre">Nombre
+									</label> <br> <input type="search" name="buscar"
+										class="form-control" id="palabraClave"
+										placeholder="Valor a buscar" autocomplete="off" required /> <br>
+									<a th:onclick="buscar()"><img src="img/buscar.png"
+										height="40" width="40" /></a> <a th:href="@{/listarArea}"><img
+										src="img/restablecer.png" height="40" width="40" /></a> <a
+										th:href="@{/newarea}" type="submit"><img
+										src="img/agregar.png" height="40" width="40" /></a>
+								</div></td>
+						</tr>
+					</tbody>
+				</table>
+
+				
+				<table class=" table table-bordered table-striped table-hover table-sm">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Area</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="area:${areas}">
+							<td th:text=${area.id}  ></td>
+							<td th:text=${area.areanombre}></td>
+
+							<td><a th:href="@{/editararea/}+${area.id}"><img
+									src="img/editar.png" height="30" width="30" /></a> <a
+								th:onclick="eliminar([[${area.id}]],'Area',[[${area.areanombre}]])"><img
+									src="img/eliminar.png" height="30" width="30" /></a></td>
+						<tr>
+					</tbody>
+				</table>
+
+
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+		crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="../funciones.js"></script>
+
+</body>
+</html>

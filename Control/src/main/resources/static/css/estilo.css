@@ -1,0 +1,27 @@
+@charset "ISO-8859-1";
+
+
+.color{
+	color: green;
+}
+
+.ventana{
+	background:rgb(128, 255, 255);
+	width: 30%;
+	color:rgba(255,255,255,1);
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	text-align: center;
+	padding: 33px;
+	min-height: 250px;
+	border-radius:22px;
+	position: absolute;
+	left: 34%;
+	top:35%;
+	
+	
+}
+.inputbuscar{
+	width: 30%;
+	background:rgb(128, 255, 255);
+}

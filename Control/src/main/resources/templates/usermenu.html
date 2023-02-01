@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="utf-8">
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="py-4 ml-5 mr-5">
+		
+		<div class="card bg-light">
+			
+			<div class="card-body">
+				<h3>USUARIOS</h3>
+				<br>
+
+				<table class="table">
+				<thead>
+					<tr>
+						<th>
+							<h5>Buscar registro por: </h5>
+						</th>
+					</tr>
+				</thead>
+				<!--  
+				<tbody>
+					<tr>
+						<td>
+							<input type="radio" id="username" name="findBy" value="username" checked="checked">
+							  <label for="username">Username	|</label>									
+							<br>
+							<input type="search" name="buscar" class="form-control" placeholder="Valor a buscar"><br>
+							<a th:onclick="buscar()" class="btn btn-info">Buscar</a>
+							<a th:href="@{/listarUser}" class="btn btn-warning">Limpiar</a>
+							<a th:href="@{/newuser}" class="btn btn-primary">Nuevo</a>
+						</td>
+					</tr>
+				</tbody>
+				-->
+			</table>
+				<br>
+				
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>USUARIO</th>
+							<th>CONTRASEÑA</th>
+							<th>ESTADO</th>
+							<th>ROL</th>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+					<!-- 	<tr th:each="users:${usuarios}">
+							<td th:text=${users.id}></td>
+							<td th:text=${users.username}></td>
+							<td th:text=${users.password}></td>
+							<td th:text=${users.enabled}></td>
+							<td th:text=${users.authority.authority}></td>
+ 
+							
+						</tr>-->
+					</tbody>
+				</table>
+
+
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="../funciones.js"></script>
+	<link rel="stylesheet" href="../estilo.css">
+</body>
+</html>

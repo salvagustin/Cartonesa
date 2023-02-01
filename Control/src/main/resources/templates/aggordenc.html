@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="utf-8">
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="py-4 ml-5 mr-5">
+		<div class="card bg-light">
+			<form th:action="@{/saveordenc}" th:object="${ordencompra}"
+				method="POST">
+				<div class="card-body ">
+
+					<div  class="card-header text-center">
+						<h3>ORDEN DE COMPRA</h3>
+					</div>
+
+					<div class="card-body">
+						
+						<div class="form-group">
+							<label>ID</label> 
+							<input th:field="*{idordencomp}" type="text" class="form-control" readonly/>
+						</div>
+						<br>
+						<div class="form-group">
+								<label>NUMERO DE SOLICITUD </label> <input th:field="*{numsolcompra}"
+									type="number" class="form-control" required autocomplete="off"/>
+					</div>
+					<br>
+					<div class="form-group">
+							<label>COTIZACION</label> <input th:field="*{cotizacion}"
+								type="text" class="form-control" required autocomplete="off"/>
+						</div>
+						<br>
+						<div class="form-group">
+							<label for="maquina">MAQUINAS</label> 
+						<table class="table">				
+					<tbody>
+						<tr>
+							<td>
+							<select th:field="*{maquina}"
+								class="form-control form-control-sm col-md-6" id="maquina">
+								<option th:each="maquina:${maquinas}"
+									th:value="${maquina.id}" th:text="${maquina.maquinanombre}" />
+							</select>
+							 </td>
+							 <td><a th:href="@{/newmaquina}"  class="btn btn-info">Agregar</a></td> 
+						</tr>
+					</tbody>
+				</table></div>								
+						<br>
+						<div class="form-group">
+							<label>PRODUCTO</label> <input th:field="*{producto}" type="text"
+								class="form-control" required autocomplete="off"/>
+						</div>
+						<br>
+						<div class="form-group">
+								<label>CANTIDAD </label> <input th:field="*{cantprod}"
+									type="number" class="form-control" required autocomplete="off"/>
+							</div>
+							<br>
+							<div class="form-group">
+								<label for="unidadmedida">UNIDAD DE MEDIDA</label>  
+						<table class="table">				
+					<tbody>
+						<tr>
+							<td>
+							<select	th:field="*{unidadmedida}"
+									class="form-control form-control-sm col-md-6" id="unidadmedida">
+									<option th:each="unidadmedida:${unidadesmedida}"
+										th:value="${unidadmedida.idunidad}"
+										th:text="${unidadmedida.unidad}" />
+								</select>
+							 </td>
+							 <td><a th:href="@{/newtipotrabajo}" type="submit" class="btn btn-info">Agregar</a> </td>
+						</tr>
+					</tbody>
+				</table>
+					</div>						
+							<br>							
+							<div class="form-group">
+								<label class="col-md-3">FECHA DE REQUERIMIENTO</label> <input
+									th:field="*{fechareq}" type="date"
+									placeholder="dd/mm/aaaa" id="fecha" required class="form-control col-md-8"/>
+							</div>
+							<br>
+							<div class="form-group">				
+								<label class="col-md-3">FECHA DE ENVIO OC</label> <input
+									th:field="*{fechaenvoc}" type="date"
+									class="form-control col-md-8" required/>
+							</div>
+							<br>
+							<div class="form-group">
+								<label class="col-md-3">FECHA DE INGRESO</label> <input
+									th:field="*{fechaingreso}" type="date"
+									class="form-control col-md-8" required/>
+							</div>
+							
+						</div>
+						<div class="container text-center">
+  <div class="row">
+    <div class="col-md-4"><input type="image" value="Guardar"  src="img/guardar.png" height="50" width="50" /></div>
+    <div class="col-md-4 offset-md-4"><a type="button" href="javascript:history.back()" ><img src="img/cancelar.png" height ="50" width="50" /></a></div>
+  </div></div>
+					</div>
+				
+				
+			</form>
+
+		</div>
+	</div>
+</body>
+<link href="../css/bootstrap.css" rel="stylesheet" />
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="static/basicoajax.js"></script>
+<script src="static/funciones.js"></script>
+</html>

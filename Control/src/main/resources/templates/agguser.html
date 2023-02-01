@@ -1,0 +1,57 @@
+	<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="utf-8">
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container mt-4">
+		<div class="col-sm-6">
+			<form th:action="@{/saveuser}" th:object="${user}" method="POST">
+				<div class="card">
+					<div class="card-header">
+						<h3>Usuarios</h3>
+					</div>
+					<!--  
+					<div class="card-body">
+						<div class="form-group">
+							<label>ID</label>
+							 <input th:field="*{id}" type="text" class="form-control" readonly/>
+						<br>
+							<label>USERNAME</label> 
+							<input th:field="*{username}" type="text" class="form-control" required/>		
+						<br>
+							<label>PASS</label> 
+							<input th:field="*{password}" type="number" class="form-control" required placeholder="123456789"  pattern="[A-z]{0}[0-9]{9}"/>
+						<br>
+							<label>ESTADO</label> 
+							<input th:field="*{enabled}" type="text" class="form-control" required/>
+						
+						
+						<label for="rol">ROLES</label> 
+				<table class="table">				
+					<tbody>
+						<tr>
+							<td>
+							<select th:field="*{authority}" class="form-control form-control-sm col-md-6" id="rol">
+								<option th:each="authority:${authoritys}" th:value="${authority.id}" th:text="${authority.authority}"/>
+							</select>
+							 </td>							 
+						</tr>
+					</tbody>
+				</table>							
+						</div>
+						<input type="submit" value="Guardar" class="btn btn-success">
+						<span class="validity"></span>
+					<a type="button" href="javascript:history.back()" class="btn btn-warning">Cancelar</a>
+					</div>		-->								
+				</div>
+			</form>
+
+		</div>
+	</div>
+
+</body>
+</html>

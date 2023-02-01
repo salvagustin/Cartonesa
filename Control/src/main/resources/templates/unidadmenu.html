@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="utf-8">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="py-4 ml-5 mr-5">
+	
+		<div class="card bg-light">
+			
+			<div class="card-body">
+			
+			
+			<div class="container text-center">
+  <div class="row">
+    <div class="col">
+    
+			<h2>UNIDADES DE MEDIDA</h2>
+    </div>
+    
+    
+    <div >
+    <h6 id="HoraActual"> </h6>
+    
+    </div>
+
+  </div>
+</div>
+			
+			
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							<h5>Buscar registro por: </h5>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<input type="radio" id="idunidad" name="findBy" value="Idunidad" checked="checked">
+							  <label for="idunidad" >Id	|</label>
+							<input type="radio" id="unidad" name="findBy" value="Unidad">
+							  <label for="unidad">Unidad </label>
+							
+							<br>
+							<input type="text" name="buscar" class="form-control" id="palabraClave" 
+							placeholder="Valor a buscar" required autocomplete="off">
+						
+																				
+							<br>
+							<a th:onclick="buscar()" ><img src="img/buscar.png" height ="40" width="40" /></a>							
+							<a th:href="@{/listarUnidad}" ><img src="img/restablecer.png" height ="40" width="40" /></a>
+							<a th:href="@{/newunidad}" type="submit" ><img src="img/agregar.png" height ="40" width="40" /></a> 
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+				<table class=" table table-bordered table-striped table-hover table-sm">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Unidad medida</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="unidad:${unidades}">
+							<td th:text=${unidad.idunidad}></td>
+							<td th:text=${unidad.unidad}></td>
+
+							<td><a th:href="@{/editarunidad/}+${unidad.idunidad}"
+								><img src="img/editar.png" height ="30" width="30" /></a> <a
+								th:onclick="eliminar([[${unidad.idunidad}]],'Unidad',[[${unidad.unidad}]])"
+								><img src="img/eliminar.png" height ="30" width="30" /></a></td>
+						<tr>
+					</tbody>
+				</table>
+
+
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="funciones.js"></script>
+	<script type="text/javascript">
+		function limpiarCampos() {
+			window.location = '/listarUnidad';
+		}
+	</script>
+</body>
+</html>

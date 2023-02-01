@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="utf-8">
+</head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="py-4 ml-5 mr-5">
+<form name="form1" id="form1" th:action="@{/saveordent}" th:object="${ordentrabajo}" method="POST" >
+	<div class="card bg-light">			
+		<div class="card-body">
+			<div class="container text-center">
+ 				<div class="row">
+    				<div class="col">
+     					<div class="container text-center">
+  							<div class="row">
+    							<div class="col">
+    								<h2>Cierre de Orden de trabajo</h2>
+    							</div>
+    							<table class="table">
+					<thead>
+						<tr>
+							<th>
+								<h5>Orden: </h5>
+							</th>
+							<th>
+								<input type="text" id="ordenacerrar" name="ordenacerrar"  
+								placeholder="Buscar orden" autocomplete="off"  class="inputbuscar">
+							</th>
+							<th>
+							
+							<a th:onclick="cerrarorden()" ><img src="img/buscar.png" height ="40" width="40" /></a>
+							</th>							
+						</tr>
+						<tr th:each="ordentrabajo:${ordenacerrar}">
+							<th>
+								<h5>Fecha: </h5>
+							</th>
+							<th align="center">
+								<td th:text=${ordentrabajo.fecharealizada}></td>
+							<th>
+								<input id="idorden" th:text=${ordentrabajo.idordentrab} readonly>				
+						</tr>
+						
+						<tr th:each="ordentrabajo:${ordenacerrar}" id="">
+							<th>
+								<h5>Estado: </h5>
+							</th>
+							<th>
+								<td th:text=${ordentrabajo.estadoot}></td>								 					
+						</tr>
+						<tr>
+							<th>
+								<h5>Nuevo Estado :</h5>
+							</th>
+							<th>
+							
+							
+								<table class="table">
+									<tbody>
+										<tr>						
+											<td>
+											<label><input type="radio" id="realizado" name="estadoot"  value="Realizado"  required> Realizado   |</label>	
+							 				<label><input type="radio" id="pndt" name="estadoot"  value="Pendiente" > Pendiente   |</label>
+							 				<label><input type="radio" id="pxrepuesto" name="estadoot"  value="PXRepuesto" > PXRepuesto   |</label>
+							  				<label><input type="radio" id="programada" name="estadoot"  value="Programada" > Programada</label>
+											</td>
+										</tr>														
+									</tbody>						
+								</table>
+								<input type="image" value="Guardar"  src="img/guardar.png" height="50" width="50" />
+								
+							
+							</th>						
+						</tr>												
+					</thead>
+				</table>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    </form>
+</div>   	  
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+      
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="funciones.js"></script>		
+	</body>
+</html>

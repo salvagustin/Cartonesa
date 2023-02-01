@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head >
+<meta charset="UTF-8">
+	<title>CARTONESA</title>
+	<link rel="stylesheet" href="estilos.css">
+	
+</head>
+<body>
+
+	<header class="header">
+		<div class="container">
+		<div class="btn-menu">
+			<label for="btn-menu">☰</label>
+		</div>
+			<div class="logo">
+				<h1>CARTONESA</h1>
+			</div>			
+		</div>
+	</header>
+	<div class="capa"></div>
+<!--	--------------->
+<input type="checkbox" id="btn-menu">
+<div class="container-menu">
+	<div class="cont-menu">
+		<nav>
+		<a th:href="@{/listarArea}" >Areas</a> 
+		<a th:href="@{/listarCausa}" >Causas</a> 
+		<a th:href="@{/listarMaquina}" >Maquinas</a> 
+		<a th:href="@{/listarOrdencompra}" >Compras</a> 
+		<a th:href="@{/listarOrdentrabajo}" >Trabajos</a> 
+		<a th:href="@{/listarTecnico}" >Tecnicos</a>
+		<a th:href="@{/listarUsuario}" >Usuarios</a>
+		
+				
+		</nav>
+		<label for="btn-menu">✖️</label>
+	</div>
+</div>
+
+</body>
+</html>

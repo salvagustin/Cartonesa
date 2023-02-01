@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<meta charset="utf-8">
+
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="py-4 ml-5 mr-5">
+		
+		<div class="card bg-light">
+					
+			<div class="card-body">
+			<h2>ROLES</h2>
+			<br>						
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							<h5>Buscar registro por: </h5>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<input type="radio" id="idrol" name="findBy" value="Idrol" checked="checked">
+							 <label for="idrol">Idrol |</label>
+							 
+							<input type="radio" id="descripcion" name="findBy" value="Descripcion">
+							<label for="descripcion">Descripcion </label>
+							
+							<br>
+							<input type="search" name="buscar" class="form-control" placeholder="Valor a buscar"><br>
+							<a th:onclick="buscar()" class="btn btn-info">Buscar</a>
+							<a th:href="@{/listarRol}" class="btn btn-warning">Limpiar</a>							
+							<a th:href="@{/newrol}" type="submit" class="btn btn-info ">Nuevo</a> 
+						</td>
+					</tr>
+				</tbody>
+			</table>										
+				<br>
+			
+			
+				<table class="table table-striped" >
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>DESCRIPCION</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr th:each="rol:${roles}">
+					<td th:text=${rol.idrol}></td>
+					<td th:text=${rol.descripcion}></td>																									
+					</tbody>
+				</table>
+								
+			</div>
+		</div>
+	</div>		
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="funciones.js"></script>
+</body>
+</html>
