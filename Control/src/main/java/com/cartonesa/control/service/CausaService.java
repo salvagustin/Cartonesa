@@ -21,7 +21,7 @@ public class CausaService implements ICausaService{
 	//SERVICIO QUE LISTA TODAS LAS CAUSAS
 	@Override
 	public List<Causa> listar( ) {
-		return (List<Causa>)data.findAll();
+		return (List<Causa>)data.findByOrderByIdcausaDesc();
 	}
 
 	//SERVICIO QUE LISTA TODAS LAS AREAS
@@ -45,20 +45,26 @@ public class CausaService implements ICausaService{
 	@Override
 	public void delete(int idcausa) {
 		data.deleteById(idcausa);
+	}	
+
+	//SERVICIO QUE BUSCA REGISTROS POR DESCRIPCION DE CAUSA
+	@Override
+	public List<Causa> findByDescripcioncausaContaining(String descripcioncausa) {
+		// TODO Auto-generated method stub
+		return data.findByDescripcioncausaContaining(descripcioncausa);
 	}
 
-	//SERVICIO QUE BUSCAR REGISTROS POR NOMBRE
+	//SERVICIO  BUSCA REGISTROS DE OT POR DESCRIPCION DE CAUSA
 	@Override
-	public List<Causa> findByFalla(String falla) {
+	public List<Causa> findByDescripcioncausa(String descripcioncausa) {
 		// TODO Auto-generated method stub
-		return data.findByFalla(falla);
+		return data.findByDescripcioncausa(descripcioncausa);
 	}
 
-	//SERVICIO QUE BUSCAR REGISTROS POR NOMBRE
 	@Override
-	public List<Causa> findBySolucion(String solucion) {
+	public List<Causa> findByIdcausa(int id) {
 		// TODO Auto-generated method stub
-		return data.findBySolucion(solucion);
+		return data.findByIdcausa(id);
 	}
 	
 

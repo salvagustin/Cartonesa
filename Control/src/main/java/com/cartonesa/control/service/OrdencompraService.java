@@ -47,7 +47,7 @@ public class OrdencompraService implements IOrdencompraService{
 	//SERVICIO QUE LISTA TODAS LAS ORDENES DE COMPRA
 	@Override
 	public List<Ordencompra> listar() {
-		return (List<Ordencompra>)data.findAll();
+		return (List<Ordencompra>)data.findByOrderByIdordencompDesc();
 	}
 
 	//SERVICIO QUE BUSCAR REGISTROS POR NUMERO DE SOLICITUD DE COMPRA
@@ -61,7 +61,7 @@ public class OrdencompraService implements IOrdencompraService{
 	@Override
 	public List<Ordencompra> findByCotizacion(String cotizacion) {
 		// TODO Auto-generated method stub
-		return data.findByCotizacion(cotizacion);
+		return data.findByCotizacionContaining(cotizacion);
 	}
 
 	//SERVICIO QUE BUSCAR REGISTROS POR CANTIDAD DE PRODUCTO
@@ -75,7 +75,7 @@ public class OrdencompraService implements IOrdencompraService{
 	@Override
 	public List<Ordencompra> findByProducto(String producto) {
 		// TODO Auto-generated method stub
-		return data.findByProducto(producto);
+		return data.findByProductoContaining(producto);
 	}
 
 	//SERVICIO QUE BUSCAR REGISTROS POR MAQUINA
@@ -90,5 +90,39 @@ public class OrdencompraService implements IOrdencompraService{
 	public List<Ordencompra> findByUnidadmedida(Unidadmedida unidadmedida) {
 		// TODO Auto-generated method stub
 		return data.findByUnidadmedida(unidadmedida);
-	}		
+	}
+
+	@Override
+	public List<Ordencompra> findByEstadooc(String estadooc) {
+		// TODO Auto-generated method stub
+		return data.findByEstadoocContaining(estadooc);
+	}
+	
+	//SERVICIO QUE CUENTA REGISTROS POR ESTADO DE ORDEN DE TRABAJO
+	@Override
+	public long countByEstadooc(String estado) {
+		// TODO Auto-generated method stub
+		return data.countByEstadooc(estado);		
+	}
+
+	//SERVICIO QUE CUENTA TODOS LOS REGISTROS DE ORDEN DE TRABAJO
+	@Override
+	public long getNumberOfOrdencompra() {
+		// TODO Auto-generated method stub
+		return data.count();
+	}
+	
+	//SERVICIO QUE BUSCA REGISTROS DE OC PARA ELIMINAR UNIDAD DE MEDIDA
+	@Override
+	public List<Ordencompra> buscarporidunidad(int id) {
+		// TODO Auto-generated method stub
+		return data.buscarporidunidad(id);
+	}
+
+	//SERVICIO QUE BUSCA REGISTROS DE OC PARA ELIMINAR MAQUINA
+	@Override
+	public List<Ordencompra> buscarporidmaq(int id) {
+		// TODO Auto-generated method stub
+		return data.buscarporidmaq(id);
+	}
 }

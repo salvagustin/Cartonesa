@@ -27,6 +27,7 @@ public class Ordencompra {
 	private int idordencomp;
 	private int numsolcompra;
 	private String cotizacion;
+	private String estadooc;
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -59,7 +60,7 @@ public class Ordencompra {
 
 	public Ordencompra(int idordencomp, int numsolcompra, String cotizacion, Date fechareq, Date fechaenvoc,
 			Date fechaingreso, BigDecimal cantprod, String producto, Maquina maquina,
-			Unidadmedida unidadmedida) {
+			Unidadmedida unidadmedida,String estadooc) {
 		super();
 		this.idordencomp = idordencomp;
 		this.numsolcompra = numsolcompra;
@@ -71,6 +72,7 @@ public class Ordencompra {
 		this.producto = producto;
 		this.maquina = maquina;
 		this.unidadmedida = unidadmedida;
+		this.estadooc = estadooc;
 	}
 
 	public int getIdordencomp() {
@@ -150,6 +152,29 @@ public class Ordencompra {
 	}
 
 	public void setUnidadmedida(Unidadmedida unidadmedida) {
+		this.unidadmedida = unidadmedida;
+	}
+
+	public String getEstadooc() {
+		return estadooc;
+	}
+
+	public void setEstadooc(String estadooc) {
+		this.estadooc = estadooc;
+	}
+
+	public Ordencompra(int numsolcompra, String cotizacion, String estadooc, Date fechareq, Date fechaenvoc,
+			Date fechaingreso, BigDecimal cantprod, String producto, Maquina maquina, Unidadmedida unidadmedida) {
+		super();
+		this.numsolcompra = numsolcompra;
+		this.cotizacion = cotizacion;
+		this.estadooc = estadooc;
+		this.fechareq = fechareq;
+		this.fechaenvoc = fechaenvoc;
+		this.fechaingreso = fechaingreso;
+		this.cantprod = cantprod;
+		this.producto = producto;
+		this.maquina = maquina;
 		this.unidadmedida = unidadmedida;
 	}
 	

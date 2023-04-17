@@ -1,127 +1,89 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/layout :: head">
-<meta charset="utf-8">
+<html xmlns:th="http:www.thymefeaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>ORDENES TRABAJO</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-<header th:replace="layout/layout :: header"></header>
-
 <div class="py-4 ml-5 mr-5">
 	<div class="card bg-light">			
 		<div class="card-body">
 			<div class="container text-center">
  				<div class="row">
     				<div class="col">
-     					<div class="container text-center">
-  							<div class="row">
-    							<div class="col">
-    								<h2>Orden de trabajo</h2>
-    							</div>   	  
-    							<div >
-    								<h6 id="HoraActual"> </h6>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-        
+    					<h2>Orden de trabajo</h2>
+    				</div>   	  
     				<div >
-    					<h5 id="HoraActual"> </h5>
+    					<h6 id="HoraActual"> </h6>
     				</div>
-  				</div>
-			</div>									
-					
-					<table class="table">
+    			</div>
+    		</div>
+    										
+				<br>
+				
+				
+			<table class="table" >
 				<thead>
-					<tr>
-						<th>
-							<h5>Buscar registro por: </h5>
-						</th>
-						
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th align="right">
-							<h6 align="right">Total:</h6>
-						</th>
-							<th><h6 align="left" th:text=${conteototal}></h6></th>
-						
-						<th>
-							<h6 align="right">Pendientes:</h6>
-						</th>
-						<th><h6 align="left" th:text=${conteopndnt}></h6></th>
-						
-						<th>
-							<h6 align="right">Realizadas:</h6>
-						</th>
-						<th><h6 align="left" th:text=${conteoreal}></h6></th>
-						
-						<th>
-							<h6 align="right">Programadas:</h6>
-						</th>
-						<th><h6 align="left" th:text=${conteoprog}></h6></th>
-						
-						<th>
-							<h6 align="right">PXRepuesto:</h6>
-						</th>
-						<th><h6 align="left" th:text=${conteopxrep}></h6></th>
-						
-						
-					</tr>					
-				</thead>
-				</table>
-				<table class="table">
-				<thead>
-					<tr>
-					<tbody>
-					<tr >
-						<td>
-							<input type="radio" id="idordentrab" name="findBy" value="Idordentrab" checked="checked">
-							<label for="idordentrab">Correlativo |</label>
+						<tr>
+							<td>
+							<h6>Buscar por: </h6>
+							<input type="radio" id="idorden" name="findBy" value="Idorden" checked="checked">
+							<label for="idorden">Correlativo</label>
 										
 							<input type="radio" id="maquina" name="findBy" value="Maq"  >
-							<label for="maquina">Maquina |</label>
+							<label for="maquina">Maquina</label>
 							 
 							<input type="radio" id="tecn" name="findBy" value="Tecn">
-							<label for="tecn">Tecnico |</label>
+							<label for="tecn">Tecnico</label>
 							
-							<input type="radio" id="causa" name="findBy" value="Causa">
-							<label for="causa">Causa |</label>
+							<input type="radio" id="Causa" name="findBy" value="Causa">
+							<label for="Causa">Causa</label>
+							
+							<input type="radio" id="Falla" name="findBy" value="Falla">
+							<label for="Falla">Falla</label>
 							
 							<input type="radio" id="estadoot" name="findBy" value="Estadoot">
-							<label for="estadoot">Estadoot |</label>
+							<label for="estadoot">Estadoot</label>
 							
 							<input type="radio" id="tipoorden" name="findBy" value="Tipoorden">
 							<label for="tipoorden">Tipo orden </label>
 							<br>
-							
-							<input type="search" name="buscar" class="form-control" placeholder="Valor a buscar" autocomplete="off">
+						
+							<input type="search" name="buscar" class="form-control" id="palabraClave" placeholder="Valor a buscar" autocomplete="off">
 							<br>
-							<a th:onclick="buscar()" ><img src="img/buscar.png" height ="40" width="40" /></a>
+						
 							
-							<a th:href="@{/listarOrdentrabajo}" ><img src="img/restablecer.png" height ="40" width="40" /></a>
+							<a  href="/menu"><img src="/img/menu.png" height ="50" width="50" /></a>
+							<a  th:onclick="validar()"><img src="/img/buscar.png" height ="50" width="50" /></a>
+							<a  th:href="@{/listarOrdentrabajo}"><img src="/img/restablecer.png" height ="50" width="50" /></a>
+							<a  th:href="@{/newot}"><img src="/img/agregar.png" height ="50" width="50" /></a>	
+							<a  th:href="@{/BuscarOTEdit}"><img src="/img/editar.png" height ="50" width="50" /></a>
+							<a  th:href="@{/iracerrar}"><img src="/img/flecha.png" height ="50" width="50" /></a>
+							<a  th:href="@{/irabuscar}"><img src="/img/pdf.png" height ="50" width="50" /></a>
+							<a  th:href="@{/reportespendientes}"><img src="/img/pendientes.png" height ="50" width="50" /></a>
+							<a  th:href="@{/listarOTProgra}"><img src="/img/programadas.png" height ="50" width="50" /></a>
 							
-							<a th:href="@{/newot}" type="submit" ><img src="img/agregar.png" height ="40" width="40" /></a>									
-							
-							<a th:href="@{/cerrarOrden}" ><img src="img/flecha.png" height ="40" width="40" /></a>
-																											
-								
-						</td>
-					</tr>
-				</tbody>
+							<label th:text=${mensaje} style="color: red"></label>	
+							</td>	
+						</tr>
+					
+				</thead>
 			</table>								
-					 		
-					<table class=" table table-responsive table-bordered table-striped table-hover table-sm">					
-					<thead>
+			<div class="outer-wrapper" >
+   				<div class="table-wrapper">
+					   
+    			<table class="tableot">
+      				 <thead >
 						<tr>
 							<th>Correlativo</th>
 							<th>Area</th>
@@ -129,50 +91,63 @@
 							<th>Submaquina</th>
 							<th>Tecnico</th>
 							<th>Causa</th>
-							<th>Descripcion</th>
+							<th >Descripcion</th>
+							<th>Falla</th>
 							<th>Estado OT</th>
-							<th>Estado OC</th>
 							<th>Tipo trabajo</th>
-							<th>Horas de trabajo</th>
-							<th>Fecha realizada</th>
-							<th>Intervalo</th>
+							<th>Fecha y hora</th>
 							<th>Tipo orden</th>
+							<th>Orden Compra</th>
+							<th >Eliminar</th>
 						</tr>
 					</thead>
-					<tbody>
+					
+					
+       <tbody>
 						<tr th:each="ordentrabajo:${ordenest}">
 							<td th:text=${ordentrabajo.idordentrab}></td>
-							<td th:text=${ordentrabajo.area.areanombre}></td>
+							<td th:text=${ordentrabajo.maquina.area.areanombre}></td>
 							<td th:text=${ordentrabajo.maquina.maquinanombre}></td>
 							<td th:text=${ordentrabajo.submaquina.nombres}></td>
 							<td th:text=${ordentrabajo.tecnico.nombre}></td>
-							<td th:text=${ordentrabajo.causa.falla}></td>
-							<td th:text=${ordentrabajo.descripcion}></td>
+							<td th:text=${ordentrabajo.causa.descripcioncausa}></td>
+							<td >
+								 <div class="first">
+									<span th:text=${ordentrabajo.descripcion}></span>
+								</div>
+							</td>
+							<td th:text=${ordentrabajo.falla}></td>
 							<td th:text=${ordentrabajo.estadoot}></td>
-							<td th:text=${ordentrabajo.estadooc}></td>
-							<td th:text=${ordentrabajo.tipotrabajo.tipotrab}></td>
-							<td th:text=${ordentrabajo.horastrab}></td>
-							<td th:text=${ordentrabajo.fecharealizada}></td>
-							<td th:text=${ordentrabajo.tiempos}></td>
+							<td th:text=${ordentrabajo.tecnico.tipotrabajo.tipotrab}></td>
+							<td >
+								<div class="divfecha">
+									<span th:text=${ordentrabajo.fecharegistro}></span>
+								</div>
+							</td>
 							<td th:text=${ordentrabajo.tipoorden}></td>
+							<td th:text=${ordentrabajo.ordencompra.idordencomp}></td>									
 							<td>
-							<a th:href="@{/editarordent/}+${ordentrabajo.idordentrab}"
-								><img src="img/editar.png" height ="30" width="30" /></a> 
-								</td><td>
-								<a th:onclick="eliminar([[${ordentrabajo.idordentrab}]],'Ordentrabajo',[[${ordentrabajo.idordentrab}]])"
-								type="button"> <img src="img/eliminar.png" height ="30" width="30" /></a>
-								</td>
+							<a  th:onclick="eliminar([[${ordentrabajo.idordentrab}]],'Ordentrabajo',[[${ordentrabajo.idordentrab}]])"><img src="/img/eliminar.png" height ="40" width="40" /></a>
+								
+							</td>
 						<tr>
 					</tbody>
-				</table>
+    </table>
+</div>
+</div>		
+</div>
+  	</div>
+</div>					
 			
 		</div>
 	</div>
 </div>
-	<footer th:replace="layout/layout :: footer"></footer>
-      
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="funciones.js"></script>		
-	</body>
+	<script src="../funciones.js"></script>
+	<link rel="stylesheet" type="text/css" href="static/css/estilo.css" th:href="@{/css/estilo.css}">
+
+</body>
+
 </html>

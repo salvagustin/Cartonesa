@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class Cartonesacontrol {
+	
 
 	// METODO QUE  REDIRECCIONA AL FORMULARIO DE LOGIN 
 	@GetMapping({"/","/login"})
@@ -18,15 +19,10 @@ public class Cartonesacontrol {
 		return "menu";
 	}
 	
-	// METODO QUE  REDIRECCIONA AL FORMULARIO DE USUARIOS SIN PRIVILEGIOS 
-	@GetMapping("/user")
-	public String user() {
-		return "user";
+	// METODO QUE  REDIRECCIONA AL FORMULARIO DE ACCESO DENEGADO 
+	@GetMapping("/acceso-denegado")
+	public String accesodenegado() {
+		return "acceso-denegado";
 	}
 	
-	// METODO QUE  REDIRECCIONA AL FORMULARIO DE USUARIO CON PRIVILEGIOS O ADMINISTRADOR 
-	@GetMapping("/admin")
-	public String admin() {
-		return "admin";
-	}
 }

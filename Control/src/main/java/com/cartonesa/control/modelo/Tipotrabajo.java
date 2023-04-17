@@ -51,5 +51,10 @@ public class Tipotrabajo {
 	}
 	
 
+	//CONSTRUCTOR PARA PRUEBA JUNIT
+	public Tipotrabajo(String tipotrab) {
+		super();
+		this.tipotrab = tipotrab;
+	}
 	
 }

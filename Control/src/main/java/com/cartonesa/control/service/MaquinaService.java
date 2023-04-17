@@ -21,7 +21,7 @@ public class MaquinaService implements IMaquinaService{
 	//SERVICIO QUE LISTA TODAS LAS MAQUINAS
 	@Override
 	public List<Maquina> listar() {
-		return (List<Maquina>)data.findAll();
+		return (List<Maquina>)data.findByOrderByIdDesc();
 	}
 	
 	//SERVICIO PARA EDITAR UN REGISTRO
@@ -54,6 +54,7 @@ public class MaquinaService implements IMaquinaService{
 		return data.findByMaquinanombre(maquinanombre);
 	}
 
+	
 	//SERVICIO QUE BUSCAR REGISTROS POR IDAREA SELECCIONADA
 	@Override
 	public List<Maquina> buscarPorIdArea(int idArea) {
@@ -65,7 +66,13 @@ public class MaquinaService implements IMaquinaService{
 	@Override
 	public List<Maquina> findByArea(Area area) {
 		// TODO Auto-generated method stub
-		return data.findAll();
+		return data.findByArea(area);
+	}
+
+	@Override
+	public List<Maquina> buscarporidarea(int id) {
+		// TODO Auto-generated method stub
+		return data.buscarporidarea(id);
 	}
 
 }

@@ -12,12 +12,15 @@ public interface ICausaService {
 	public int save(Causa c);
 	public void delete(int idcausa);
 	
+	//METODOS PARA BUSCAR REGISTROS POR ID CAUSA
+	public List<Causa> findByIdcausa(int id);
 	
-	//METODOS PARA BUSCAR REGISTROS POR FALLA
-	public List<Causa> findByFalla(String falla);	
+	//METODOS PARA BUSCAR REGISTROS DE OT POR DESCRIPCION DE CAUSA
+	public List<Causa> findByDescripcioncausa(String descripcioncausa);
 	
-	//METODOS PARA BUSCAR REGISTROS POR SOLUCION
-	public List<Causa> findBySolucion(String solucion);
+	
+	//METODOS PARA BUSCAR REGISTROS POR CAUSA DESCRIPCION O COINCIDENCIAS
+	public List<Causa> findByDescripcioncausaContaining(String descripcioncausa);
 	
 }
 

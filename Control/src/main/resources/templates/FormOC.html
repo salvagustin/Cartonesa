@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymefeaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>ORDEN COMPRA</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+		integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+</head>
+<body>
+<div class="div-card body" style="padding: 15px" align="center">	
+<div class=" divagregar py-4 ml-5 mr-5"  align="center"  >
+	<form th:action="@{/saveordenc}" th:object="${ordencompra}" method="POST">	
+		<div class="container-fluid cew-9">
+			<div class="row" style="background-color: rgb(205, 159, 20)">
+				<div class="col" align="center">
+					<h2>ORDEN DE COMPRA</h2>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col" align="center" >
+						<label>Id</label> 
+						<input th:field="*{idordencomp}" type="text" 
+						class="form-control" readonly/ style="text-align: center">
+						<br><br>
+						<label>Número de solicitud </label> 
+						<input th:field="*{numsolcompra}" type="number" 
+						class="form-control" required autocomplete="off" style="text-align: center"/>
+						<br><br>
+						<label>Número OC</label> 
+						<input th:field="*{cotizacion}" type="number" 
+						class="form-control" required autocomplete="off" style="text-align: center"/>	
+						<br><br>
+						<table class="table" style="background-color:#b1a995">				
+					<tbody>
+						<tr>
+							<td>
+								Maquina
+							</td>
+							<td>
+							<select name="maquina" id="maquina" onchange="cargarmaquina()" th:field="*{maquina}"
+								title="Seleccione una maquina" class="form-control form-control-sm" required>
+								<option value=""  >------Maquinas----</option>
+								<option th:each="maquina:${maquinas}"
+									th:value="${maquina.id}" th:text="${maquina.maquinanombre}"
+									 />
+							</select>	
+							 </td>
+						</tr>
+					</tbody>
+				</table>
+						
+				</div>
+				<div class="col" align="center">
+							
+							<label >Estado Orden de Compra</label>
+									
+							<div class="form-group" >		
+							<dv class="contenedor">
+								<label for="pendiente"><input type="radio" id="pendiente" name="estadooc"  value="Pendiente" th:field="*{estadooc}" required> Pendiente  |</label>
+								<label for="emitida"><input type="radio" id="emitida" name="estadooc"  value="Emitida" th:field="*{estadooc}"> Emitida |</label>
+								<label for="recibida"><input type="radio" id="recibida" name="estadooc"  value="Recibida" th:field="*{estadooc}"> Recibida </label>
+								<label for="cancelada"><input type="radio" id="cancelada" name="estadooc"  value="Cancelada" th:field="*{estadooc}"> Cancelada</label>								 
+							</dv>		
+							</div>
+							<br>
+							<label>Producto</label> <input th:field="*{producto}" type="text"
+								class="form-control" required autocomplete="off" style="text-align: center"/>
+							<br>
+							<label>Cantidad</label> <input th:field="*{cantprod}"
+									type="number" class="form-control" required autocomplete="off" style="text-align: center"/>
+							<br><br>
+							<table class="table" style="background-color:#b1a995">				
+					<tbody>
+						<tr>
+							<td>
+								Unidad medida
+							</td>
+							<td>
+							<select	th:field="*{unidadmedida}"
+									class="form-control form-control-sm" id="unidadmedida">
+									<option value=""  >------Unidades----</option>
+									<option th:each="unidadmedida:${unidadesmedida}"
+										th:value="${unidadmedida.idunidad}"
+										th:text="${unidadmedida.unidad}" />
+								</select>	
+							 </td>
+						</tr>
+					</tbody>
+				</table>
+				<br>				
+				</div>
+				<div class="col" align="center">
+					
+					<label class="col-md-3">Fecha de requerimiento</label> <input
+									th:field="*{fechareq}" type="date"
+									placeholder="dd/mm/aaaa" id="fecha" required class="form-control col-md-8"/>	
+					<br>
+					<label class="col-md-3">Fecha de envio</label> <input
+									th:field="*{fechaenvoc}" type="date"
+									class="form-control col-md-8" required/>
+					<br>
+					<label class="col-md-3">Fecha de ingreso</label> <input
+									th:field="*{fechaingreso}" type="date"
+									class="form-control col-md-8" required/>				
+					<br>
+				</div>
+			</div>
+			<br>
+			<div class="row" >
+				<div class="col" align="center" >
+					<a ><input type="image" src="/img/guardar.png"  height="50" width="50"/></a>
+						
+				</div>
+				<div class="col" align="center" >
+					<a th:href="@{/listarOrdencompra}"><img src="/img/cancelar.png" height ="55" width="55" /></a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+</body>
+<script src="../funciones.js"></script>
+	<link rel="stylesheet" type="text/css" href="static/css/estilo.css" th:href="@{/css/estilo.css}">
+</body>
+
+</html>

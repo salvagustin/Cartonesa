@@ -69,10 +69,16 @@ public class Tecnico {
 	public void setTipotrabajo(Tipotrabajo tipotrabajo) {
 		this.tipotrabajo = tipotrabajo;
 	}
+
 	
-	
-	
-	
+	//CONSTRUCTOR PARA PRUEBA JUNIT
+	public Tecnico(String nombre, String codigotrab, Tipotrabajo tipotrabajo) {
+		super();
+		this.nombre = nombre;
+		this.codigotrab = codigotrab;
+		this.tipotrabajo = tipotrabajo;
+	}
+
 }
 
 

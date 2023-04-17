@@ -2,7 +2,6 @@ package com.cartonesa.control.service;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cartonesa.control.interfaceService.IAreaService;
@@ -21,8 +20,10 @@ public class AreaService implements IAreaService{
 	//SERVICIO QUE LISTA TODAS LAS AREAS
 	@Override
 	public List<Area> listar() {
-		return (List<Area>)data.findAll();
+		return (List<Area>)data.findByOrderByIdDesc();
 	}
+	
+	
 	
 	//SERVICIO PARA EDITAR UN REGISTRO
 	@Override
@@ -48,11 +49,21 @@ public class AreaService implements IAreaService{
 		data.deleteById(id);
 	}
 
-	//SERVICIO QUE BUSCAR REGISTROS POR NOMBRE
+	
+	//SERVICIO QUE BUSCAR OT POR NOMBRE DE AREA
 	@Override
 	public List<Area> findByAreanombre(String areanombre) {
 		// TODO Auto-generated method stub
 		return data.findByAreanombre(areanombre);
 	}
+
+	//SERVICIO QUE BUSCAR REGISTROS POR NOMBRE
+	@Override
+	public List<Area> findByAreanombreContaining(String areanombre) {
+		// TODO Auto-generated method stub
+		return data.findByAreanombreContaining(areanombre);
+	}
+	
+	
 
 }

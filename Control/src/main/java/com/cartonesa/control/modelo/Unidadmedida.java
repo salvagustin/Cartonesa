@@ -44,6 +44,12 @@ public class Unidadmedida {
 	public void setUnidad(String unidad) {
 		this.unidad = unidad;
 	}
+
+	//CONSTRUCTOR PARA PRUEBA JUNIT
+	public Unidadmedida(String unidad) {
+		super();
+		this.unidad = unidad;
+	}
 	
 	
 }

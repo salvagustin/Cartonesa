@@ -22,7 +22,7 @@ public class UnidadmedidaService implements IUnidadmedidaService{
 	//SERVICIO QUE LISTA TODAS LAS UNIDADES DE MEDIDA
 	@Override
 	public List<Unidadmedida>  listar() {
-		return (List<Unidadmedida>)data.findAll();
+		return (List<Unidadmedida>)data.findByOrderByIdunidadDesc();
 	}
 
 	//SERVICIO PARA EDITAR UN REGISTRO
@@ -61,6 +61,6 @@ public class UnidadmedidaService implements IUnidadmedidaService{
 	@Override
 	public List<Unidadmedida> findByUnidad(String unidad) {
 		// TODO Auto-generated method stub
-		return data.findByUnidad(unidad);
+		return data.findByUnidadContaining(unidad);
 	}
 }

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymefeaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>ORDEN TRABAJO</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+		integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+</head>
+<body >
+<div class="div-card body" style="padding: 15px" align="center">	
+<div class=" divagregar py-4 ml-5 mr-5"  align="center"  >
+	<form name="form1" id="form1" th:action="@{/saveordent}" th:object="${ordentrabajo}" method="POST" >	
+		<div class="container-fluid cew-9">
+			<div class="row" style="background-color: rgb(205, 159, 20)">
+				<div class="col" align="center">
+					<h2>ORDEN DE TRABAJO</h2>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col" align="center" >
+							<label>CORRELATIVO</label> 
+							<input th:field="*{idordentrab}" type="text" style="text-align: center"
+								class="form-control form-control-sm col-md-6" readonly />
+								<br>
+							<table class="table" style="background-color:#b1a995">				
+					<tbody>
+						<tr>
+							<td>
+								Maquina
+							</td>
+							<td>
+							<select name="maquina" id="maquina" onchange="cargarmaquina()" th:field="*{maquina}"
+								title="Seleccione una maquina" class="form-control form-control-sm" required>
+								<option value=""  >------Maquinas----</option>
+								<option th:each="maquina:${maquinas}"
+									th:value="${maquina.id}" th:text="${maquina.maquinanombre}"
+									 />
+							</select>	
+							 </td>
+						</tr>
+					</tbody>
+				</table>
+							<br>
+							<table class="table" style="background-color:#b1a995">				
+					<tbody>
+						<tr>
+							<td>
+								SubMaquina
+							</td>
+							<td>
+							<select name="submaquina" id="submaquina" onchange="cargarsubmaquina()" th:field="*{submaquina}"
+								class="form-control form-control-sm" required>
+								<option value=""  >-------Submaquinas-------</option>
+								<option th:each="submaquina:${submaquinas}"
+									th:value="${submaquina.id}"
+									th:text="${submaquina.nombres}" />
+							</select>	
+							 </td>
+						</tr>
+					</tbody>
+				</table>
+				<br>
+				<table class="table" style="background-color:#b1a995">				
+					<tbody>
+						<tr>
+							<td>
+								Tecnico
+							</td>
+							<td>
+							<select
+								th:field="*{tecnico}" required
+								class="form-control form-control-sm"  id="tecnico">
+								<option th:each="tecnico:${tecnicos}"
+								th:value="${tecnico.idtecn}" th:text="${tecnico.nombre}" />
+							</select>	
+							 </td>
+						</tr>
+					</tbody>
+				</table>	
+			
+				</div>
+				<div class="col" align="center">
+					<table class="table" style="background-color:#b1a995">				
+					<tbody>
+						<tr>
+							<td>
+								Causa
+							</td>
+							<td>
+							<select th:field="*{causa}" style="width: 200px" required
+								class="form-control form-control-sm"  id="causa">
+								<option th:each="causa:${causas}" 
+								th:value="${causa.idcausa}"
+									th:text="${causa.descripcioncausa}" />
+							</select>	
+							 </td>
+						</tr>
+					</tbody>
+				</table>
+				<br>
+					<label>DESCRIPCION</label>
+					<br>
+					 <textarea th:field="*{descripcion}" id="descripcionot" type="text" class="txtdescrip"
+						 required autocomplete="off" />
+					<br><br>
+					<label>FALLA</label> 
+					<textarea th:field="*{falla}" type="text" class="txtdescrip"
+					required autocomplete="off" />
+					<br>
+							
+				
+				</div>
+				<div class="col" align="center">
+					<label for="estadooc">ESTADO ORDEN TRABAJO</label>
+					<div class="contenedor">
+							 <label><input type="radio" id="realizado" name="estadoot"  value="Realizado" th:field="*{estadoot}" required> Realizado   |</label>	
+							 <label><input type="radio" id="pndt" name="estadoot"  value="Pendiente" th:field="*{estadoot}"> Pendiente   |</label>
+							 <label><input type="radio" id="pxrepuesto" name="estadoot"  value="PXRepuesto" th:field="*{estadoot}"> PXRepuesto  </label>
+							  <label><input type="radio" id="programada" name="estadoot"  value="Programada" th:field="*{estadoot}"> Programada</label>
+					</div>	
+					<table class="table" style="background-color:#b1a995">				
+					<tbody>
+						<tr>
+							<td>
+								Orden Compra 
+							</td>
+							<td>
+							<select th:field="*{ordencompra}"
+								class="form-control form-control-sm"  id="ordencompraordencompra">
+								<option value="1" selected> NO ORDEN</option>
+								<option th:each="ordencompra:${OClist}" 
+								th:value="${ordencompra.idordencomp}"
+									th:text="${ordencompra.cotizacion}" />
+							</select>	
+							 </td>
+						</tr>
+					</tbody>
+				</table>	
+					<br>
+					<label>HORAS DE TRABAJO</label> 
+					<input th:field="*{horastrab}" type="number" step="0.1" autocomplete="off"
+						class="form-control form-control-sm col-md-6" required  style="text-align: center"/>
+						<br>
+					<label>Tipo de orden</label>
+					<br>
+					<input type="radio" id="preventivo" name="tipo" value="Preventivo" th:field="*{tipoorden}" required >
+					<label for="preventivo">Preventivo |</label>
+								
+					<input type="radio" id="correctivo" name="tipo" value="Correctivo" th:field="*{tipoorden}"  >
+					<label for="correctivo" >Correctivo </label>
+					<br>
+					<table class="table" style="background-color:#b1a995">				
+					<tbody>
+						<tr>
+							<td>
+								<label class="col-md-3" id="tiempolabel">INTERVALOS</label>
+							</td>
+							<td>
+							 <select  th:field="*{tiempos}" class="form-control form-control-sm" id="tiempos">
+								
+								<option th:value="NO-CHECK" th:text="NO-CHECK" />
+								<option th:value="SEMANAL" th:text="SEMANAL" />
+								<option th:value="QUINCENAL" th:text="QUINCENAL" />
+								<option th:value="MENSUAL" th:text="MENSUAL" />
+								<option th:value="BI-MENSUAL" th:text="BI-MENSUAL" />
+								<option th:value="TRIMESTRAL" th:text="TRIMESTRAL" />
+								<option th:value="SEMESTRAL" th:text="SEMESTRAL" />
+								<option th:value="ANUAL" th:text="ANUAL" />
+								<option th:value="BI-ANUAL" th:text="BI-ANUAL" />
+
+							</select>	
+							 </td>
+						</tr>
+					</tbody>
+				</table>
+    				 
+				</div>
+			</div>
+			<br>
+			<div class="row" >
+				<div class="col" align="center" >
+					<input type="image" src="/img/guardar.png"  height="50" width="50"/> 						
+				</div>
+				<div class="col" align="center" >
+					<a  th:href="@{/listarOrdentrabajo}"><img src="/img/cancelar.png" height ="55" width="55" /></a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+</div>	
+</body>
+<link href="../css/bootstrap.css" rel="stylesheet" />
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="static/basicoajax.js"></script>
+<script src="static/funciones.js"></script>
+
+
+<!-- FUNCION PARA ESCOGER  EL TIPO DE ORDEN Y OCULTAR LOS INTERVALOS-->
+<script>
+	$(function() {
+		$('#preventivo').click(function() {
+			$('#tiempos, #inter').show()
+			$('#tiempolabel, #inter').show();
+		});
+		$('#correctivo').click(function() {
+			$('#tiempos, #inter').hide()
+			$('#tiempolabel, #inter').hide();
+		});
+	})
+</script>
+<script th:src="@{/js/jquery.min.js}"></script>
+
+	<script th:inline="javascript">
+	/* Variable Javascript que guarda el contextPath para formar la URL a la cual haremos la peticion*/
+	var contextPath = /*[[@{http://localhost:8080/buscarPorMaquina}]]*/
+	console.log(contextPath);
+
+	/* --------- BUSCAR SUBMAQUINAS SEGUN LA MAQUINA SELECCIONADA --------- */
+			$('#maquina').change(
+			function() {				
+				$.getJSON(contextPath,
+								{
+									idMaquina : $(this).val(),
+									ajax : 'true'
+								},
+								function(data) {
+									var html = '<option value="">--Seleccione Submaquina--</option>';
+									var len = data.length;
+									for (var i = 0; i < len; i++) {
+										html += '<option value="' + data[i].id + '">'
+												+ data[i].nombres
+												+ '</option>';
+									}
+									html += '</option>';
+									$('#submaquina').html(html);
+								});
+			});
+	</script>
+
+<script src="../funciones.js"></script>
+	<link rel="stylesheet" type="text/css" href="static/css/estilo.css" th:href="@{/css/estilo.css}">
+</body>
+
+</html>

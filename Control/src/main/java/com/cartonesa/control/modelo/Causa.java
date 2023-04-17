@@ -15,9 +15,7 @@ public class Causa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idcausa;
-	private String falla;
-	private String solucion;
-	
+	private String descripcioncausa;
 	
 	
 	public Causa() {
@@ -26,11 +24,10 @@ public class Causa {
 	}
 
 
-	public Causa(int idcausa, String falla, String solucion) {
+	public Causa(int idcausa, String descripcioncausa) {
 		super();
 		this.idcausa = idcausa;
-		this.falla = falla;
-		this.solucion = solucion;
+		this.descripcioncausa=descripcioncausa;
 	}
 
 	public int getIdcausa() {
@@ -41,22 +38,24 @@ public class Causa {
 		this.idcausa = idcausa;
 	}
 
-	public String getFalla() {
-		return falla;
-	}
 
-	public void setFalla(String falla) {
-		this.falla = falla;
+
+	public String getDescripcioncausa() {
+		return descripcioncausa;
 	}
 
 
-	public String getSolucion() {
-		return solucion;
+	public void setDescripcioncausa(String descripcioncausa) {
+		this.descripcioncausa = descripcioncausa;
 	}
 
-	public void setSolucion(String solucion) {
-		this.solucion = solucion;
+
+	//CONSTRUCTOR PARA PRUEBA JUNIT
+	public Causa(String descripcioncausa) {
+		super();
+		this.descripcioncausa = descripcioncausa;
 	}
+	
 	
 
 }

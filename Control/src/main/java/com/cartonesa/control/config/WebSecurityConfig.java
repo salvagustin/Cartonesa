@@ -6,11 +6,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
 import com.cartonesa.control.service.UserDetailsServiceImpl;
 
 
-@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
@@ -27,8 +25,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .authorizeRequests()
 	        .antMatchers(resources).permitAll()  
 	        .antMatchers("/","/index").permitAll()
-	        .antMatchers("/admin*").access("hasRole('ADMIN')")
-	        .antMatchers("/user*").access("hasRole('USER')")
+	        .antMatchers("/listarUsers/**").hasAuthority("ROLL_ADMIN")
+	        .antMatchers("/newuser/**").hasAuthority("ROLL_ADMIN")
+	        .antMatchers("/editaruser/**").hasAuthority("ROLL_ADMIN")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -39,10 +38,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and()
-                
             .logout()
                 .permitAll()
-                .logoutSuccessUrl("/login?logout");
+                .logoutSuccessUrl("/login?logout")
+                .and().exceptionHandling().accessDeniedPage("/acceso-denegado");
     }
 	
     @Autowired

@@ -17,4 +17,5 @@ public interface ITipotrabajoService {
 	
 	//METODOS PARA BUSCAR REGISTROS POR TIPO DE TRABAJO
 	public List<Tipotrabajo> findByTipotrab(String tipotrab);
+	
 }

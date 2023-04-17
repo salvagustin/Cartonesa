@@ -1,52 +1,56 @@
 package com.cartonesa.control.modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Timestamp;
+
+
 
 @Entity
 @Table(name = "ORDENTRABAJO")
+@DynamicUpdate
+@SequenceGenerator(
+	    name="OTSecuenc",
+	    sequenceName = "Secuenc_ot",
+	    initialValue = 20000000, 
+	    allocationSize = 1
+	)
+
 public class Ordentrabajo {
 
 	//CAMPOS, SETTER Y GETTER DE LA TABLA ORDEN DE TRABAJO
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "OTSecuenc")
 	private int idordentrab;
 	
 	private String descripcion;
 	
+	private String falla;
+	
 	private String estadoot;
-
-	private String estadooc;
 		
 	private BigDecimal horastrab;
-		
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date fecharealizada;
+	
+	@Column(updatable = false, nullable = false)
+	@DateTimeFormat(iso=ISO.DATE_TIME)
+	private Timestamp fecharegistro;
 		
 	private String tiempos;
 				
 	private String tipoorden;
 		
-	@ManyToOne
-    @JoinColumn(name="IDAREA")
-    public Area area;
-		
-	@ManyToOne
-    @JoinColumn(name="IDTIPTRAB")
-    public Tipotrabajo tipotrabajo;	
-	
 	@ManyToOne
     @JoinColumn(name="IDMAQ")
     public Maquina maquina;	
@@ -62,6 +66,10 @@ public class Ordentrabajo {
 	@ManyToOne
     @JoinColumn(name="IDCAUSA")
     public Causa causa;
+	
+	@ManyToOne
+    @JoinColumn(name="idordencomp")
+    public Ordencompra ordencompra;
 
 	
 	public Ordentrabajo() {
@@ -70,21 +78,20 @@ public class Ordentrabajo {
 	}
 
 
-	public Ordentrabajo(int idordentrab, String descripcion, String estadoot, String estadooc,
-			BigDecimal horastrab, Date fecharealizada, String tiempos, String tipoorden, Area area,
-			Tipotrabajo tipotrabajo, Maquina maquina, Submaquina submaquina, Tecnico tecnico, Causa causa) {
+	public Ordentrabajo(int idordentrab, String descripcion, String estadoot,
+			BigDecimal horastrab, Timestamp fecharegistro, String tiempos, String tipoorden, 
+			Maquina maquina, Submaquina submaquina, Tecnico tecnico, Causa causa,Ordencompra ordencompra, 
+			String falla) {
 		super();
 		this.idordentrab = idordentrab;
-		
+		this.falla=falla;
 		this.descripcion = descripcion;
 		this.estadoot = estadoot;
-		this.estadooc = estadooc;
 		this.horastrab = horastrab;
-		this.fecharealizada = fecharealizada;
+		this.fecharegistro = fecharegistro;
 		this.tiempos = tiempos;
 		this.tipoorden = tipoorden;
-		this.area = area;
-		this.tipotrabajo = tipotrabajo;
+		this.ordencompra=ordencompra;
 		this.maquina = maquina;
 		this.submaquina = submaquina;
 		this.tecnico = tecnico;
@@ -123,15 +130,6 @@ public class Ordentrabajo {
 	}
 
 
-	public String getEstadooc() {
-		return estadooc;
-	}
-
-
-	public void setEstadooc(String estadooc) {
-		this.estadooc = estadooc;
-	}
-
 
 	public BigDecimal getHorastrab() {
 		return horastrab;
@@ -143,13 +141,13 @@ public class Ordentrabajo {
 	}
 
 
-	public Date getFecharealizada() {
-		return fecharealizada;
+	public Timestamp getFecharegistro() {
+		return fecharegistro;
 	}
 
 
-	public void setFecharealizada(Date fecharealizada) {
-		this.fecharealizada = fecharealizada;
+	public void setFecharegistro(Timestamp fecharegistro) {
+		this.fecharegistro = fecharegistro;
 	}
 
 
@@ -170,26 +168,6 @@ public class Ordentrabajo {
 
 	public void setTipoorden(String tipoorden) {
 		this.tipoorden = tipoorden;
-	}
-
-
-	public Area getArea() {
-		return area;
-	}
-
-
-	public void setArea(Area area) {
-		this.area = area;
-	}
-
-
-	public Tipotrabajo getTipotrabajo() {
-		return tipotrabajo;
-	}
-
-
-	public void setTipotrabajo(Tipotrabajo tipotrabajo) {
-		this.tipotrabajo = tipotrabajo;
 	}
 
 
@@ -231,7 +209,48 @@ public class Ordentrabajo {
 	public void setCausa(Causa causa) {
 		this.causa = causa;
 	}
+
+
+	public String getFalla() {
+		return falla;
+	}
+
+
+	public void setFalla(String falla) {
+		this.falla = falla;
+	}
+
+
+	public Ordencompra getOrdencompra() {
+		return ordencompra;
+	}
+
+
+	public void setOrdencompra(Ordencompra ordencompra) {
+		this.ordencompra = ordencompra;
+	}
+
+	public Ordentrabajo(String descripcion, String falla, String estadoot,  BigDecimal horastrab,
+			Timestamp fecharegistro, String tiempos, String tipoorden,  Maquina maquina,
+			Submaquina submaquina, Tecnico tecnico, Causa causa, Ordencompra ordencompra) {
+		super();
+		this.descripcion = descripcion;
+		this.falla = falla;
+		this.estadoot = estadoot;
+		this.horastrab = horastrab;
+		this.fecharegistro = fecharegistro;
+		this.tiempos = tiempos;
+		this.tipoorden = tipoorden;
+		this.maquina = maquina;
+		this.submaquina = submaquina;
+		this.tecnico = tecnico;
+		this.causa = causa;
+		this.ordencompra = ordencompra;
 		
+	}
+		
+	
+	
 	
 	
 

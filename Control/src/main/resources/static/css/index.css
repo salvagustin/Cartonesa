@@ -6,7 +6,8 @@
 		font-family: 'Montserrat Alternates', sans-serif;
 	}
 	body{
-		background-image: url("../img/ADESCO.jpeg");
+		opacity: 4;
+		background-image: url("../img/background.jpg");
 		background-attachment: fixed;
 		background-size: 100vw 100vh;
 		background-repeat: no-repeat;

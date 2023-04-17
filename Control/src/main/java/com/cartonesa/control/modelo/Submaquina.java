@@ -60,6 +60,13 @@ public class Submaquina {
 	}
 
 	
+	//CONSTRUCTOR PARA PRUEBA JUNIT
+	public Submaquina(String nombres, Maquina maquina) {
+		super();
+		this.nombres = nombres;
+		this.maquina = maquina;
+	}
+
 	@Override
 	public String toString() {
 		return "Submaquina [id=" + id + ", nombres=" + nombres + ", maquina=" + maquina + "]";

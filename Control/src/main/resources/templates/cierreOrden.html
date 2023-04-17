@@ -1,96 +1,100 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/layout :: head">
-<meta charset="utf-8">
+<html xmlns:th="http:www.thymefeaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>ESTADOOT</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-<header th:replace="layout/layout :: header"></header>
+
+
+
+
+
 
 <div class="py-4 ml-5 mr-5">
-<form name="form1" id="form1" th:action="@{/saveordent}" th:object="${ordentrabajo}" method="POST" >
-	<div class="card bg-light">			
-		<div class="card-body">
-			<div class="container text-center">
- 				<div class="row">
-    				<div class="col">
-     					<div class="container text-center">
-  							<div class="row">
-    							<div class="col">
-    								<h2>Cierre de Orden de trabajo</h2>
-    							</div>
-    							<table class="table">
-					<thead>
-						<tr>
-							<th>
-								<h5>Orden: </h5>
-							</th>
-							<th>
-								<input type="text" id="ordenacerrar" name="ordenacerrar"  
-								placeholder="Buscar orden" autocomplete="off"  class="inputbuscar">
-							</th>
-							<th>
-							
-							<a th:onclick="cerrarorden()" ><img src="img/buscar.png" height ="40" width="40" /></a>
-							</th>							
-						</tr>
-						<tr th:each="ordentrabajo:${ordenacerrar}">
-							<th>
-								<h5>Fecha: </h5>
-							</th>
-							<th align="center">
-								<td th:text=${ordentrabajo.fecharealizada}></td>
-							<th>
-								<input id="idorden" th:text=${ordentrabajo.idordentrab} readonly>				
-						</tr>
-						
-						<tr th:each="ordentrabajo:${ordenacerrar}" id="">
-							<th>
-								<h5>Estado: </h5>
-							</th>
-							<th>
-								<td th:text=${ordentrabajo.estadoot}></td>								 					
-						</tr>
-						<tr>
-							<th>
-								<h5>Nuevo Estado :</h5>
-							</th>
-							<th>
-							
-							
-								<table class="table">
-									<tbody>
-										<tr>						
-											<td>
-											<label><input type="radio" id="realizado" name="estadoot"  value="Realizado"  required> Realizado   |</label>	
-							 				<label><input type="radio" id="pndt" name="estadoot"  value="Pendiente" > Pendiente   |</label>
-							 				<label><input type="radio" id="pxrepuesto" name="estadoot"  value="PXRepuesto" > PXRepuesto   |</label>
-							  				<label><input type="radio" id="programada" name="estadoot"  value="Programada" > Programada</label>
-											</td>
-										</tr>														
-									</tbody>						
-								</table>
-								<input type="image" value="Guardar"  src="img/guardar.png" height="50" width="50" />
-								
-							
-							</th>						
-						</tr>												
-					</thead>
-				</table>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
-    </div>
-    </form>
-</div>   	  
-
-
-	<footer th:replace="layout/layout :: footer"></footer>
-      
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<div class="col" align="center">
+    	<table class="table">
+			<thead>
+				<tr>
+					<th>
+						<a  th:href="@{/listarOrdentrabajo}"><img src="/img/atras.png" height ="50" width="50" /></a>
+					</th>
+					<th align="right">
+						<h2>Cierre de orden de trabajo</h2>
+					</th>
+				</tr>
+			</thead>
+		</table>
+	</div>	
+	
+		<div class="card bg-light">			
+			<div class="card-body">
+				  							
+    								<table class="table">
+										<tbody>
+											<tr>
+												<th>
+													<h5>Número de orden: </h5>
+												</th>
+												
+												<th>
+													<input type="number" id="ordenacerrar" name="ordenacerrar"  
+													placeholder="20 000 000" autocomplete="off" required >
+													
+												</th>
+																			
+											</tr>
+											<tr >
+												<th>
+													<h5> Nuevo Estado</h5>	
+												</th>		
+												 						
+												<th>	
+													<label th:text=${mensaje} ></label>
+																							
+													<table class="tablenew">
+														<tbody lign="center">
+															<tr >						
+																<td >
+																	<select style=width:400px name="newestado" class="form-control form-control-sm col-md-6" id="newestado" >
+																		<option th:value="Realizado" th:text="Realizado" />
+																		<option th:value="Pendiente" th:text="Pendiente" />
+																		<option th:value="PXRepuesto" th:text="PXRepuesto" />
+																		<option th:value="Programada" th:text="Programada" />
+																	</select>
+																</td>
+																<td >
+																	<a  th:onclick="cambiarestado()"><img src="/img/flecha.png" height ="50" width="50" /></a>
+																</td>
+															</tr>
+																													
+														</tbody>						
+													</table>		
+												</th>		
+											</tr>	
+																						
+										</tbody>
+									</table>	
+									
+   		 </div>			
+											
+</div> 
+	<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+	<script src="../funciones.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="funciones.js"></script>		
-	</body>
+	<link rel="stylesheet" type="text/css" href="static/css/estilo.css" th:href="@{/css/estilo.css}">
+
+</body>
+
 </html>

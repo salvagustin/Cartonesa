@@ -21,7 +21,7 @@ public class SubmaquinaService implements ISubmaquinaService{
 	//SERVICIO QUE LISTA TODAS LAS SUBMAQUINAS
 	@Override
 	public List<Submaquina> listar(){		
-		return (List<Submaquina>)data.findAll();
+		return (List<Submaquina>)data.findByOrderByIdDesc();
 	}
 
 	//SERVICIO PARA EDITAR UN REGISTRO
@@ -51,7 +51,7 @@ public class SubmaquinaService implements ISubmaquinaService{
 	@Override
 	public List<Submaquina> findByNombres(String nombres) {
 		// TODO Auto-generated method stub
-		return data.findByNombres(nombres);
+		return data.findByNombresContaining(nombres);
 	}
 
 	//SERVICIO QUE BUSCAR REGISTROS POR MAQUINA
@@ -67,5 +67,12 @@ public class SubmaquinaService implements ISubmaquinaService{
 		// TODO Auto-generated method stub
 		return data.findByMaquina_Id(idMaquina);
 	}
+
+	@Override
+	public List<Submaquina> buscarporidmaq(int id) {
+		// TODO Auto-generated method stub
+		return data.buscarporidmaq(id);
+	}
 	
+
 }

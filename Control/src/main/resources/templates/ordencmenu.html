@@ -1,95 +1,104 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/layout :: head">
-<meta charset="utf-8">
+<html xmlns:th="http:www.thymefeaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>ORDENES COMPRA</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-
-	<header th:replace="layout/layout :: header"></header>
-
-	<div class="py-4 ml-5 mr-5">
-
-		<div class="card bg-light">
-			
-			<div class="card-body">
+<div class="py-4 ml-5 mr-5">
+	<div class="card bg-light">			
+		<div class="card-body">
 			<div class="container text-center">
-  <div class="row">
-    <div class="col">
-     <h2>ORDENES DE COMPRA</h2>
-    </div>
-    
-    
-    <div >
-    <h6 id="HoraActual"> </h6>
-    
-    </div>
-
-  </div>
-</div>
-					<table class="table">
-				<thead>
-					<tr>
-						<th>
-							<h5>Buscar registro por: </h5>
-						</th>
-					</tr>
-				</thead>
+  				<div class="row">
+   					 <div class="col">
+     					<h2>ORDEN DE COMPRA</h2>
+   					</div>  
+    				<div >
+    					<h6 id="HoraActual"> </h6>
+    				</div>
+  				</div>
+			</div>
+			
+			
+			
+			<table class="table">
+				
 				<tbody>
 					<tr>
 						<td>
+							<h6>Buscar por: </h6>
 							<input type="radio" id="solcompra" name="findBy" value="Numsolcompra" checked="checked">
-							 <label for="solcompra">Sol compra |</label>
+							 <label for="solcompra">Sol compra</label>
 							 
 							<input type="radio" id="cotizacion" name="findBy" value="Cotizacion">
-							<label for="cotizacion">Cotizacion |</label>
+							<label for="cotizacion">Cotizacion</label>
 							
 							<input type="radio" id="cantprod" name="findBy" value=Cantprod>
-							<label for="cantprod">Cantidad producto |</label>
+							<label for="cantprod">Cantidad</label>
 							
-							<input type="radio" id="pProducto" name="findBy" value="Producto">
-							<label for="producto">Producto |</label>
+							<input type="radio" id="producto" name="findBy" value="Producto">
+							<label for="producto">Producto</label>
 							
 							<input type="radio" id="maquina" name="findBy" value="Maquinas">
-							<label for="maquina">Maquina |</label>
+							<label for="maquina">Maquina</label>
 							
 							<input type="radio" id="unidadmedida" name="findBy" value="Unidadmed">
-							<label for="unidadmedida">Unidad medida </label>
+							<label for="unidadmedida">Unidad</label>
+						
+							<input type="radio" id="estadooc" name="findBy" value="Estadooc">
+							<label for="estadooc">Estado</label>
 							
 							<br>
-							<input type="search" name="buscar" class="form-control" placeholder="Valor a buscar" autocomplete="off"><br>
+							<input type="search" name="buscar" class="form-control" id="palabraClave" placeholder="Valor a buscar" autocomplete="off"><br>
 							
-							<a th:onclick="buscar()" ><img src="img/buscar.png" height ="40" width="40" /></a>
-							<a th:href="@{/listarOrdencompra}" ><img src="img/restablecer.png" height ="40" width="40" /></a>							
-							<a th:href="@{/newordenc}" type="submit" ><img src="img/agregar.png" height ="40" width="40" /></a>
-							 <a th:href="@{/listarUnidad}" type="submit" ><img src="img/medida.png" height ="40" width="40" /></a>
-						</td>
+							<a  href="/menu"><img src="/img/menu.png" height ="50" width="50" /></a>
+							<a  th:onclick="validar()"><img src="/img/buscar.png" height ="50" width="50" /></a>
+							<a  th:href="@{/listarOrdencompra}"><img src="/img/restablecer.png" height ="50" width="50" /></a>
+							<a  th:href="@{/newordenc}"><img src="/img/agregar.png" height ="50" width="50" /></a>
+							<label th:text=${mensaje} style="color: red"></label>
+							
+							</td>
 					</tr>
 				</tbody>
 			</table>
-						
+			
+				<div class="outer-wrapper">
+   				<div class="table-wrapper">		
 				<table class=" table table-bordered table-striped table-hover table-sm">					
-				<thead>
+				<thead align="center">
 						<tr>
 
 							<th>Id</th>
 							<th>Sol. de compra</th>
-							<th>Cotizacion</th>
+							<th>Número OC</th>
 							<th>Maquina</th>
+							<th>Estado</th>
 							<th>Producto</th>
 							<th>Cantidad</th>
 							<th>Unidad medida</th>
 							<th>Fecha requerimiento</th>
 							<th>Fecha envio</th>
 							<th>Fecha ingreso</th>
-							
+							<th>Acciones</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody align="center">
 						<tr th:each="ordencompra:${ordenesc}">
 							<td th:text=${ordencompra.idordencomp}></td>
 							<td th:text=${ordencompra.numsolcompra}></td>
 							<td th:text=${ordencompra.cotizacion}></td>
 							<td th:text=${ordencompra.maquina.maquinanombre}></td>
+							<td th:text=${ordencompra.estadooc}></td>
 							<td th:text=${ordencompra.producto}></td>
 							<td th:text=${ordencompra.cantprod}></td>
 							<td th:text=${ordencompra.unidadmedida.unidad}></td>
@@ -98,28 +107,25 @@
 							<td th:text=${ordencompra.fechaingreso}></td>
 
 
-							<td><a th:href="@{/editarOrdencompra/}+${ordencompra.idordencomp}"
-								><img src="img/editar.png" height ="30" width="30" /></a>
-								 <a th:onclick="eliminar([[${ordencompra.idordencomp}]],'Ordencompra',[[${ordencompra.idordencomp}]])"
-								><img src="img/eliminar.png" height ="30" width="30" /></a></td>
+							<td>
+							<a  th:href="@{/editarOrdencompra/}+${ordencompra.idordencomp}"><img src="/img/editar.png" height ="40" width="40" /></a>
+							
+							<a th:onclick="eliminar([[${ordencompra.idordencomp}]],'Ordencompra',[[${ordencompra.idordencomp}]])"><img src="/img/eliminar.png" height ="40" width="40" /></a>
 						<tr>
 					</tbody>
 				</table>
-				
+   				</div>
+				</div>
 
 			</div>
 		</div>
 	</div>
-	<footer th:replace="layout/layout :: footer"></footer>
-
-
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="funciones.js"></script>
-	
-	<script type="text/javascript">
-	function limpiarCampos(){
-		window.location='/listarOrdencompra';
-	}</script>
+	<script src="../funciones.js"></script>
+	<link rel="stylesheet" type="text/css" href="static/css/estilo.css" th:href="@{/css/estilo.css}">
+
 </body>
+
 </html>

@@ -7,36 +7,39 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Users {
+@Table(name = "USER")
+public class User {
 
 	//CAMPOS, SETTER Y GETTER DE LA TABLA USUARIOS
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "USER_NAME")
 	private String username;
 	private String password;
 	private boolean enabled;
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "AUTHORITY_ID")
 	private Authority authority;
 
-	public Users() {
+	public User() {
 
 	}
 
-	public Users(int id, String username, String password, boolean enabled, Authority authority) {
+	public User(int id, String username, String password, boolean enabled, Authority authority) {
 		super();
-		
 		 this.id = id;
 		 this.username = username;
 		 this.password = password;
 		 this.enabled = enabled;
 		 this.authority = authority;
-		 
+		
 	}
 
 	public int getId() {
@@ -76,6 +79,17 @@ public class Users {
 	}
 
 	public void setAuthority(Authority authority) {
+		this.authority = authority;
+	}
+	
+	
+	
+	//CONSTRUCTOR PARA PRUEBA JUNIT
+	public User(String username, String password, boolean enabled, Authority authority) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
 		this.authority = authority;
 	}
 

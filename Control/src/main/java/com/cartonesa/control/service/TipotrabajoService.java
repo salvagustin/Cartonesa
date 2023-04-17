@@ -20,7 +20,7 @@ public class TipotrabajoService implements ITipotrabajoService{
 	//SERVICIO QUE LISTA TODOS LOS TIPOS DE TRABAJO
 	@Override
 	public List<Tipotrabajo>  listar() {
-		return (List<Tipotrabajo>)data.findAll();
+		return (List<Tipotrabajo>)data.findByOrderByIdtiptrabDesc();
 	}
 
 	//SERVICIO PARA EDITAR UN REGISTRO
@@ -50,7 +50,7 @@ public class TipotrabajoService implements ITipotrabajoService{
 	@Override
 	public List<Tipotrabajo> findByTipotrab(String tipotrab) {
 		// TODO Auto-generated method stub
-		return data.findByTipotrab(tipotrab);
+		return data.findByTipotrabContaining(tipotrab);
 	}
 
 	//SERVICIO QUE BUSCAR REGISTROS POR ID
@@ -59,4 +59,6 @@ public class TipotrabajoService implements ITipotrabajoService{
 		// TODO Auto-generated method stub
 		return data.findByIdtiptrab(idtiptrab);
 	}
+
+	
 }

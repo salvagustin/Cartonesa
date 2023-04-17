@@ -14,8 +14,12 @@ public interface IAreaService {
 	public void delete(int id);	
 	
 	
-	//BUSCAR AREAS POR NOMBRE DE AREA
+	//BUSCAR OT POR NOMBRE DE AREA
 	public List<Area> findByAreanombre(String areanombre);
-		
+
+	//BUSCAR AREAS POR NOMBRE DE AREA O COINCIDENCIAS
+	public List<Area> findByAreanombreContaining(String areanombre);
+	
+	
 }
 

@@ -60,10 +60,12 @@ public class Maquina {
 		this.area = area;
 	}
 
-	@Override
-	public String toString() {
-		return "Maquina [id=" + id + ", maquinanombre=" + maquinanombre + ", area=" + area + "]";
+	//CONSTRUCTOR PARA PRUEBA JUNIT
+	public Maquina(String maquinanombre, Area area) {
+		super();
+		this.maquinanombre = maquinanombre;
+		this.area = area;
 	}
 	
-	
+		
 }

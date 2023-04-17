@@ -1,5 +1,6 @@
 package com.cartonesa.control.modelo;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "AREA")
+
 public class Area{
 	
 	//CAMPOS, SETTER Y GETTER DE LA TABLA AREA
@@ -19,7 +21,6 @@ public class Area{
 	
 	
 	public Area() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Area(int id, String areanombre) {
@@ -43,9 +44,12 @@ public class Area{
 		this.areanombre = areanombre;
 	}
 
-	@Override
-	public String toString() {
-		return "Area [id=" + id + ", areanombre=" + areanombre + "]";
+	//CONTRUCTOR PARA PRUEBA JUNIT
+	public Area( String areanombre) {
+		super();	
+		this.areanombre = areanombre;
 	}
+
+
 	
 }

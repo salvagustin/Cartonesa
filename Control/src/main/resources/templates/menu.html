@@ -1,24 +1,58 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head >
-<meta charset="UTF-8">
-	<title>CARTONESA</title>
-	<link rel="stylesheet" href="estilos.css">
-	
+<html xmlns:th="http:www.thymefeaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>MENU</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 
-	<header class="header">
-		<div class="container">
+<header class="header">
+	<div class="container">
+		
 		<div class="btn-menu">
 			<label for="btn-menu">☰</label>
 		</div>
-			<div class="logo">
-				<h1>CARTONESA</h1>
-			</div>			
+		
+		<div class="logo" style="align-items: left">
+			
+			<img src="../img/cartonesalogo.jpg" width="125px">
+			<br>
+			<FONT style="color: white" SIZE=5>AREA DE MANTENIMIENTO</font>
+	
+		 	<h3 style="color: white" th:inline="text">Bienvenido [[${#httpServletRequest.remoteUser}]]!</h3>
+		 	<form th:action="@{/logout}" method="post">
+            	<input type="submit" value="Cerrar Sesion" class="btn btn-danger"/>
+       		 </form>
+       		 
 		</div>
-	</header>
-	<div class="capa"></div>
+		
+		<nav class="menu">
+			<a th:href="@{/listarOrdentrabajo}" >Trabajos</a>
+			<a th:href="@{/reportes}" >Reportes</a>
+			<a th:href="@{/reportespendientes}">Pendientes</a>
+			<a th:href="@{/listarOTProgra}" >Programados</a>			
+			<sec:authorize="hasRole('ROLL_ADMIN')">
+				<a th:href="@{/listarUsers}" >Usuarios</a>
+				
+			</sec:authorize>			
+		</nav>	
+
+		 
+        	
+	</div>
+</header>
+		
+<div class="capa"></div>
 <!--	--------------->
 <input type="checkbox" id="btn-menu">
 <div class="container-menu">
@@ -26,17 +60,23 @@
 		<nav>
 		<a th:href="@{/listarArea}" >Areas</a> 
 		<a th:href="@{/listarCausa}" >Causas</a> 
-		<a th:href="@{/listarMaquina}" >Maquinas</a> 
+		<a th:href="@{/listarMaquina}" >Maquinas</a>
+		<a  th:href="@{/listarSubmaquina}">Submaquinas</a> 
 		<a th:href="@{/listarOrdencompra}" >Compras</a> 
-		<a th:href="@{/listarOrdentrabajo}" >Trabajos</a> 
+		<a  th:href="@{/listarUnidad}">Unidades</a>
 		<a th:href="@{/listarTecnico}" >Tecnicos</a>
-		<a th:href="@{/listarUsuario}" >Usuarios</a>
+		<a  th:href="@{/listarTipotrabajo}">Tipos trabajo</a>
 		
 				
 		</nav>
 		<label for="btn-menu">✖️</label>
 	</div>
-</div>
+<script src="https://code.jquery.com/jquery-3.6.1.js"
+		integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="../funciones.js"></script>
+	<link rel="stylesheet" type="text/css" href="static/css/estilo.css" th:href="@{/css/estilo.css}">
 
 </body>
+
 </html>

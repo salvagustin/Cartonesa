@@ -18,14 +18,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	//VARIABLE DE LA INTERFAZ DE USUARIO
     @Autowired
-    IUser userRepository;
-	
+    IUser userRepository;  
     
     @Override
      public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
      //Buscar el usuario con el repositorio y si no existe lanzar una exepcion   	    	    	
-     com.cartonesa.control.modelo.Users appUser = 
+     com.cartonesa.control.modelo.User appUser = 
                  userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("No existe usuario"));
 		
     //Mapear nuestra lista de Authority con la de spring security 

@@ -12,12 +12,21 @@ public class Authority {
 	//CAMPOS, SETTER Y GETTER DE LA TABLA AUTORIDAD O ROLES
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
 	
 	@Column
 	private String authority;
 	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getAuthority() {
 		return authority;
 	}
