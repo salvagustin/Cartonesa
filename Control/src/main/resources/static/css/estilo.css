@@ -7,7 +7,7 @@
 	}
 	body{
 		opacity: 4;
-		background-image: url("../img/background.jpg");
+		background-image: url("../img/background.jpeg");
 		background-attachment: fixed;
 		background-size: 100vw 100vh;
 		background-repeat: no-repeat;
@@ -291,7 +291,7 @@ table td {
 
 
 .divBuscarOt{
-	background-color:rgb(241, 245, 179);
+	background-color:#DAA520;
 	height: 250px;
 	align-items: center;
 }

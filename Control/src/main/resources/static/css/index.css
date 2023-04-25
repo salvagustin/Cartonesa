@@ -7,7 +7,7 @@
 	}
 	body{
 		opacity: 4;
-		background-image: url("../img/background.jpg");
+		background-image: url("../img/background.jpeg");
 		background-attachment: fixed;
 		background-size: 100vw 100vh;
 		background-repeat: no-repeat;
@@ -19,7 +19,7 @@
 }
 
 .modal-content{
-    background-color: #3b4652;
+    background-color: #DAA520;
     opacity: .85;
     padding: 0 20px;
     box-shadow: 0px 0px 3px #848484;
